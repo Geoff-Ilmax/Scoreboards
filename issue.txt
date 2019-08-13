@@ -1,0 +1,10 @@
+I have a webpage (http://8wr.io/scoreboard/source/EC4167927C/287D57E657/) that I want to have a countdown timer shown in the bottom middle.  I have it so that the timer will start as stopped/hidden, and when I send the correct websocket update to the page to start the timer, it will show and start the timer.
+
+The issue that I am having is that if I hide the timer, it doesn’t stop it, and then when I show/start the timer again, it will flash between the two times.
+
+What I would like is that when the websocket is sent to stop/hide the timer, that it hides the current timer and then stops it.  Then it will wait until I send the websocket to show/start the timer and start with a new timer.
+
+The code for the page can be seen at:
+https://github.com/Geoff-Ilmax/Scoreboards/blob/master/CRGR%20DiceMasters/event.js
+
+Thank you.
