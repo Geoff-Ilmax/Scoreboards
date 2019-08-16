@@ -7,38 +7,32 @@ if ($('#venue_1').text() != docData['venue_1'] ||
         .queue(elemShow('.event'));
 }
 
-if ($('#timer_1').text() != docData['timer_1'] &&
-    (docData['timer_1'] == false) )
+var timer_int = null;
+
+if (docData['timer_1'] == true)
 {
-    $('body')
-        .queue(elemHide('.timer')).delay(1000)
-        .queue(elemUpdate());
-}
-
-if ($('#timer_1').text() != docData['timer_1'] &&
-    (docData['timer_1'] == true) )
-{
-    startTimer(parseInt(docData['timelimit_1']), timer_1);
-    $('body')
-        .queue(elemUpdate()).delay(1000)
-        .queue(elemShow('.timer')); 
-}
-
-function startTimer(duration, display) {
-    var timer = duration*60;
-    var minutes, seconds;
-    nInterval = setInterval(function () {
-        minutes = parseInt(timer / 60, 10)
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-		if (timer == 0) 
-		{
-            clearInterval(nInterval);
-        }
-        --timer;
+	var timer_cnt = parseInt(docData['timelimit_1']) * 60;
+	
+	updateTimer(timer_cnt);
+    $('body').queue(elemShow('.timer'));
+	
+	this.timer_int = setInterval(function ()
+	{
+        timer_cnt--;
+		updateTimer(timer_cnt);
 	}, 1000);
+}
+
+if (docData['timer_1'] == false)
+{
+    clearInterval(this.timer_int);
+    $('body').queue(elemHide('.timer'));
+}
+
+function updateTimer(counter)
+{
+	let minutes = Math.floor(counter / 60).toString(),
+		seconds = (counter % 60).toString();
+		
+    $('#countdown').text(minutes.padStart(2, '0') + ":" + seconds.padStart(2, '0'));
 }
