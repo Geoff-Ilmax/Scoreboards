@@ -1,0 +1,21 @@
+{
+    "page_name": "Clock",
+    "page_type": "timers",
+    "page_order": 2,
+    "page_options": {
+        "js": "clearInterval(countdown);\n\n$('.countdown').text(calcTimer(docData['count_o']));\n\nif (docData['count_s'] > 0)\n{\n\t$('body').queue(elemShow('.countdown'));\n    countdown = setInterval(function()\n    {\n        time = parseInt(docData['count_e']) + parseInt(docData['count_o']) - new Date().getTime();\n        $('.countdown').text(calcTimer(time));\n    }, 100);\n}\n\nfunction calcTimer(time)\n{\n    let neg = (time < 0) ? '- ' : '';\n    time = Math.abs(time \/ 1000);\n    \n\thours = (Math.floor(time \/ 3600)).toString();\n    minutes = (Math.floor(time % 3600 \/ 60)).toString().padStart(2, '0');\n    seconds = (time % 60).toFixed(0).toString().padStart(2, '0');\n    \n\tif (hours > 0)\n\t\t{\n\t\t\treturn neg + hours + ':' + minutes + ':' + seconds;\n\t\t}\n\telse\n\t\t{\n\t\t\treturn neg + minutes + ':' + seconds;\n\t\t}\n}",
+        "html": "<div class=\"countdown large slow hidden\" id=\"countdown\"><\/div>",
+        "css": ".countdown\n{\n\tposition: absolute;\n    bottom: 0;\n    width: 364px;\n    height: 49px;\n    line-height: 49px;\n    text-align: center;\n    left: 778px;\n\tcolor: #FDAD0D;\n\tbackground-image: url(\"http:\/\/data.8wr.io\/sba\/238\/stream\/event clock.png\");\n}\n\n.hidden { bottom: -58px; }"
+    },
+    "fields": [],
+    "timers": {
+        "count": {
+            "timer_name": "countdown",
+            "timer_type": "countdown",
+            "timer_order": 0,
+            "timer_options": {
+                "start": "00 : 30: 00"
+            }
+        }
+    }
+}

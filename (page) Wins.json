@@ -1,0 +1,24 @@
+{
+    "page_name": "Wins",
+    "page_type": "fields",
+    "page_order": 1,
+    "page_options": {
+        "css": ".event\n{\n    position: absolute;\n    bottom: 0;\n    width: 960px;\n    height: 58px;\n    line-height: 58px;\n\ttext-align: center;\n}\n.event.e1 \n{ \n\tleft: 0px;\n\tbackground-image: url(\"http:\/\/data.8wr.io\/sba\/238\/stream\/event left 3.png\");\n}\n.event.e2 \n{ \n\tright: 0px;\n\tbackground-image: url(\"http:\/\/data.8wr.io\/sba\/238\/stream\/event right.png\");\n}\n\n.wins\n{\n    position: absolute;\n    bottom: 0;\n    width: 58px;\n    height: 58px;\n    line-height: 58px;\n\ttext-align: center;\n}\n.wins.w1 \n{ \n\tleft: 725px;\n\tbackground-image: url(\"http:\/\/data.8wr.io\/sba\/238\/stream\/event left2.png\");\n}\n.wins.w2 \n{ \n\tright: 725px;\n\tbackground-image: url(\"http:\/\/data.8wr.io\/sba\/238\/stream\/event right.png\");\n}\n\n.hidden { bottom: -58px !important; }",
+        "js": "if ($('#wins_1s').text() != docData['wins_1s'] )\n{\n    $('body')\n\t\t.queue(elemHide('.e1'))\n\t\t.queue(elemHide('.w1')).delay(1000)\n        .queue(elemUpdate()).delay(1000)\n\t\t.queue(elemShow('.e1'))\n\t\t.queue(elemShow('.w1'));\n}\n\nif ($('#wins_2s').text() != docData['wins_2s'] )\n{\n    $('body')\n\t\t.queue(elemHide('.e2'))\n\t\t.queue(elemHide('.w2')).delay(1000)\n        .queue(elemUpdate()).delay(1000)\n\t\t.queue(elemShow('.e2'))\n\t\t.queue(elemShow('.w2'));\n}",
+        "html": "<div class=\"event e1 medium slow\" id=\"event_1\"><\/div>\n<div class=\"event e2 medium slow\" id=\"event_2\"><\/div>\n\n<div class=\"wins w1 medium slow\" id=\"wins_1s\">0<\/div>\n<div class=\"wins w2 medium slow\" id=\"wins_2s\">0<\/div>"
+    },
+    "fields": {
+        "wins": {
+            "field_name": "Player Wins",
+            "field_type": "scores",
+            "field_order": 0,
+            "field_options": {
+                "score": "0",
+                "clear": "1",
+                "rows": "2"
+            },
+            "field_database": []
+        }
+    },
+    "timers": []
+}
