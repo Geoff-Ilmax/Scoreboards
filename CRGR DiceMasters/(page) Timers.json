@@ -1,0 +1,21 @@
+{
+    "page_name": "Timers",
+    "page_type": "timers",
+    "page_order": 2,
+    "page_options": {
+        "js": "clearInterval(countdown);\n\n$('.countdown').text(calcTimer(docData['count_o']));\n\nif (docData['count_s'] > 0)\n{\n\t$('body').queue(elemShow('.countdown'));\n    countdown = setInterval(function()\n    {\n        time = parseInt(docData['count_e']) + parseInt(docData['count_o']) - new Date().getTime();\n        $('.countdown').text(calcTimer(time));\n    }, 100);\n}\n\nfunction calcTimer(time)\n{\n    let neg = (time < 0) ? '- ' : '';\n    time = Math.abs(time \/ 1000);\n    \n\thours = (Math.floor(time \/ 3600)).toString();\n    minutes = (Math.floor(time % 3600 \/ 60)).toString().padStart(2, '0');\n    seconds = (time % 60).toFixed(0).toString().padStart(2, '0');\n    \n\tif (hours > 0)\n\t\t{\n\t\t\treturn neg + hours + ':' + minutes + ':' + seconds;\n\t\t}\n\telse\n\t\t{\n\t\t\treturn neg + minutes + ':' + seconds;\n\t\t}\n}",
+        "html": "<div class=\"countdown color2 large slow hidden\" id=\"countdown\"><\/div>",
+        "css": ".countdown\n{\n\tposition: absolute;\n    bottom: 0;\n    width: 300px;\n    height: 60px;\n    line-height: 60px;\n    text-align: center;\n    left: 810px;\n\t\n\tclip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);\n}\n\n.hidden { bottom: -60px; }"
+    },
+    "fields": [],
+    "timers": {
+        "count": {
+            "timer_name": "countdown",
+            "timer_type": "countdown",
+            "timer_order": 0,
+            "timer_options": {
+                "start": "00 : 90: 00"
+            }
+        }
+    }
+}
