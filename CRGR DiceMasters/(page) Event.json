@@ -1,0 +1,76 @@
+{
+    "page_name": "Event",
+    "page_type": "fields",
+    "page_order": 1,
+    "page_options": {
+        "html": "<div class=\"timer color2 large slow hidden\" id=\"countdown\"><\/div>\n<div class=\"event e1 color1 large slow hidden\" id=\"venue_1\"><\/div>\n<div class=\"event e2 color1 large slow hidden\" id=\"event_1\"><\/div>",
+        "js": "if ($('#venue_1').text() != docData['venue_1'] ||\n    $('#event_1').text() != docData['event_1'] )\n{\n    $('body')\n        .queue(elemHide('.event')).delay(1000)\n        .queue(elemUpdate()).delay(1000)\n        .queue(elemShow('.event'));\n}\n\nvar timer_int = null;\n\nif (docData['timer_1'] == true)\n{\n\tvar timer_cnt = parseInt(docData['timelimit_1']) * 60;\n\t\n\tupdateTimer(timer_cnt);\n    $('body').queue(elemShow('.timer'));\n\t\n\tthis.timer_int = setInterval(function ()\n\t{\n        timer_cnt--;\n\t\tupdateTimer(timer_cnt);\n\t}, 1000);\n}\n\nif (docData['timer_1'] == false)\n{\n    clearInterval(this.timer_int);\n    $('body').queue(elemHide('.timer'));\n}\n\nfunction updateTimer(counter)\n{\n\tlet minutes = Math.floor(counter \/ 60).toString(),\n\t\tseconds = (counter % 60).toString();\n\t\t\n    $('#countdown').text(minutes.padStart(2, '0') + \":\" + seconds.padStart(2, '0'));\n}",
+        "css": ".event\n{\n    position: absolute;\n    bottom: 0;\n    width: 780px;\n    height: 60px;\n    line-height: 60px;\n    text-align: center;\n    \n\/\/\tbackground-image: url(\"http:\/\/data.8wr.io\/sba\/238\/stream\/test.png\");\n\t\n\tclip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);\n}\n.event.e1 { left: 50px; }\n.event.e2 { right: 50px; }\n\n.timer\n{\n\tposition: absolute;\n    bottom: 0;\n    width: 300px;\n    height: 60px;\n    line-height: 60px;\n    text-align: center;\n    left: 810px;\n\t\n\tclip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);\n}\n\n.hidden { bottom: -60px; }"
+    },
+    "fields": {
+        "venue": {
+            "field_name": "Venue",
+            "field_type": "texts",
+            "field_order": 0,
+            "field_options": {
+                "rows": "1"
+            },
+            "field_database": [
+                "CR Gameroom",
+                "DM Armada's",
+                "Dicemasters @ Docs",
+                "Venue",
+                "test1"
+            ]
+        },
+        "event": {
+            "field_name": "Event",
+            "field_type": "texts",
+            "field_order": 0,
+            "field_options": {
+                "rows": "1"
+            },
+            "field_database": [
+                "Brewers Corner",
+                "Draft Series",
+                "Event",
+                "MOD Birthday Bash",
+                "Ringside",
+                "TTTD Legacy Season 1",
+                "TTTD Legacy Season 2",
+                "TTTD Legacy Season 2 Round 3",
+                "TTTD Legacy Season 3",
+                "TTTD Legacy Season1",
+                "TTTD Legacy Series 1",
+                "Thursdays @ 7pm Central",
+                "test2",
+                "test3"
+            ]
+        },
+        "timelimit": {
+            "field_name": "Match Time",
+            "field_type": "texts",
+            "field_order": 3,
+            "field_options": {
+                "rows": "1"
+            },
+            "field_database": [
+                "50",
+                "55",
+                "75",
+                "90"
+            ]
+        },
+        "timer": {
+            "field_name": "Clock Start",
+            "field_type": "checks",
+            "field_order": 4,
+            "field_options": {
+                "lock": "1",
+                "rows": "1"
+            },
+            "field_database": []
+        }
+    },
+    "timers": []
+}
